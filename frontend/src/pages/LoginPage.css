@@ -1,0 +1,66 @@
+/* frontend/src/pages/LoginPage.css */
+
+.login-page-container {
+  display: flex; /* İçeriği (login formunu) ortalamak için */
+  flex-direction: column; /* Footer ve navbar ile uyum için */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Tüm ekran yüksekliğini kapla */
+  /* Navbar ve Footer yüksekliğini hesaba katmak istersen:
+     min-height: calc(100vh - theme('spacing.16') - theme('spacing.footer_height')); 
+     (Tailwind config'de spacing.16 ve footer_height tanımlıysa)
+     Veya App.jsx'teki main alanı gibi padding ile yönetilebilir.
+     Şimdilik 100vh kalsın, App.jsx'teki main padding'i bunu ortalar.
+  */
+  background-color: #f0f4f8; /* Hafif bir arkaplan rengi (Tailwind: bg-slate-100 veya bg-indigo-50 gibi) */
+  overflow: hidden; /* Dışarı taşan animasyonları gizle */
+  position: relative; /* animated-bg'nin absolute pozisyonlanması için */
+  width: 100%;
+}
+
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Formun altında kalması için */
+  pointer-events: none; /* Arkaplanın tıklama olaylarını engellememesi için */
+}
+
+.login-form-wrapper {
+  /* Bu class LoginPage.jsx'te forma sarmalayıcı div'e verilmeli */
+  position: relative; /* Arkaplanın üzerinde kalması için */
+  z-index: 1;
+  width: 100%;
+  /* max-w-md Tailwind class'ı JSX içinde zaten kullanılıyor */
+}
+
+.book-falling {
+  position: absolute;
+  top: -80px; /* Ekranın biraz daha üzerinden başlasın */
+  
+  /* Gerçek bir kitap ikonu veya resmi kullanmak daha iyi olur: */
+  /* background-image: url('../assets/book-icon.svg'); */
+  /* background-size: contain; */
+  /* background-repeat: no-repeat; */
+  
+  /* Placeholder kitap görünümü */
+  background-color: #a5b4fc; /* Varsayılan bir kitap rengi (Tailwind: indigo-300) */
+  border-radius: 4px; /* Kitap kenarları için hafif yuvarlaklık */
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15); /* Hafif bir gölge */
+  
+  /* Animasyon adını tailwind.config.js'deki ile eşleştir */
+  animation-name: fall; 
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0; /* Animasyonla görünecek (Tailwind keyframes'i bunu yönetebilir) */
+
+  /* Farklı kitaplar için farklı boyutlar (JSX içinde style prop'u ile de verilebilir) */
+  width: 35px;  /* Varsayılan genişlik */
+  height: 50px; /* Varsayılan yükseklik */
+}
+
+
+
+
